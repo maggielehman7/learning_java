@@ -8,6 +8,7 @@ import java.util.Stack;
 // Java is object oriented
 // Java is a static you have to declare what each variable will hold
 // Java has a garbage collector so it will take care of dereferenced objects
+// debugs on a vm on your machine so it takes a lot longer to run then python
 
 public class learning_java {
 
@@ -23,7 +24,9 @@ public class learning_java {
          //System.out.println("Substring of nutmeg: " + making_strings());
         //list_examples();
         //array_examples();
-        loop_examples();
+        //loop_examples();
+        Figures shape = new three_d_shape(5, "cone", 25);
+        System.out.println(shape.toString());
     }
 
     private static void test() { // private means it can only be accessed within the class that it was created in
@@ -90,7 +93,7 @@ public class learning_java {
 
     private static void loop_examples(){
         // while loop
-        Boolean done = false;
+        boolean done = false;
         int x = 0;
         while(!done){
             if (x > 4){
@@ -122,5 +125,71 @@ public class learning_java {
         while (y > 0);
     }
 
+
+}
+// base class
+class Figures
+{
+    // the figures class has two varibales
+    private int area;
+    private String shape;
+
+    // the figures class has one constructor
+    public Figures(int area, String shape)
+    {
+        this.area = area; // this calarifies what im taking about since both variables have the same name
+        this.shape = shape; // also refures to the current object as a whole
+    }
+
+    // the shape class has three methods
+    public void increase_size(int increment)
+    {
+        area += increment;
+    }
+
+    public void change_shape(String new_name)
+    {
+        shape = new_name;
+    }
+
+    // toString() method to print info of Figure
+    public String toString()
+    {
+        return("Name of the shape "+shape
+                +"\n"
+                + "area of the shape "+area);
+    }
+}
+
+// derived class
+class three_d_shape extends Figures
+{
+
+    // the 3d subclass adds another field
+    private int volume;
+
+    // the3d subclass has one constructor
+    public three_d_shape(int area,String name,
+                        int volume)
+    {
+        // invoking base-class(Bicycle) constructor
+        super(area, name);
+        this.volume = volume; // invokes other constructors of the current class in my construcotr
+    }
+
+    // the 3d shapes subclass adds one more method
+    public void setVolume(int newVolume)
+    {
+        volume = newVolume;
+    }
+
+    // overriding toString() method
+    // of shapes to print more info
+    @Override
+    public String toString()
+    {
+        return (super.toString()+
+                "\nvolume of 3d shape is "+volume);
+    }
 
 }
